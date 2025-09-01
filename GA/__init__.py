@@ -12,9 +12,7 @@ from Samples.samples import (
     SubjectWeeklyQuota,
     Classrooms,
     Sections,
-
 )
-
 
 def timetable_generation():
     # Create Chromosomes
@@ -31,7 +29,7 @@ def timetable_generation():
         teacher_duty_days=TeacherWorkload.teacher_duty_days,
     )
 
-    timetable = timetable_generator.create_timetable(Defaults.initi()al_no_of_chromosomes)
+    timetable = timetable_generator.create_timetable(Defaults().initial_no_of_chromosomes)
     # Fitness of each Chromosome
     fitness_calculator = TimetableFitnessEvaluator(
         timetable,
@@ -47,7 +45,6 @@ def timetable_generation():
     )
 
     fitness_scores = fitness_calculator.evaluate_timetable_fitness()
-
 
     # Selection of all Chromosomes
     selection_object = TimeTableSelection()
@@ -70,7 +67,6 @@ def timetable_generation():
             crossover_chromosomes.append(child1)
             crossover_chromosomes.append(child2)
 
-
     # Mutate all crossover Chromosomes
     mutation_object = TimeTableMutation()
     mutated_chromosomes = [
@@ -88,8 +84,9 @@ def timetable_generation():
 
 
 def run_timetable_generation():
-    for generation in range(DefaDefaults().total_no_of_generations:
+    for generation in range(Defaults().total_no_of_generations):
         best_chromosome = timetable_generation()
     return best_chromosome
+
 
 run_timetable_generation()
